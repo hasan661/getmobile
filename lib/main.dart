@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:getmobile/models/cart.dart';
+import 'package:getmobile/models/orders.dart';
+import 'package:getmobile/screens/cartscreen.dart';
 import 'package:getmobile/screens/mobiledetailscreen.dart';
+import 'package:getmobile/screens/ordersscreen.dart';
 import 'package:provider/provider.dart';
 
 import '/screens/mobileoverviewscreen.dart';
-import '/providers/mobile_detail.dart';
+import 'models/mobile_detail.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,24 +17,36 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {  
-    return ChangeNotifierProvider(
-      create: (ctx)=>MobileDetail(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: Color.fromRGBO(0,0,128,1),
-          canvasColor: Colors.white,
-          accentColor: Color.fromRGBO(0, 0, 128, 1)
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+        create: (ctx)=>MobileDetail(),
         ),
-        routes:{
-          "/":(ctx)=>MobileOverviewScreen(),
-          MobileDetailScreen.routeName:(ctx)=>MobileDetailScreen(),
-    
-        }
+        ChangeNotifierProvider(create: (ctx)=>CartItem(),),
+        ChangeNotifierProvider(create: (ctx)=>OrderProvider(),)
         
-      ),
+      ],
+      
+    
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primaryColor: Color.fromRGBO(0,0,128,1),
+            canvasColor: Colors.white,
+            accentColor: Color.fromRGBO(0, 0, 128, 1)
+          ),
+          routes:{
+            "/":(ctx)=>MobileOverviewScreen(),
+            MobileDetailScreen.routeName:(ctx)=>MobileDetailScreen(),
+            CartScreen.routeName:(ctx)=>CartScreen(),
+            OrderScreen.routeName:(ctx)=>OrderScreen()
+      
+          }
+          
+        ),
     );
+      
   }
 }
 

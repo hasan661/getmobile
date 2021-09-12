@@ -1,8 +1,10 @@
-class Mobile {
+import 'package:flutter/cupertino.dart';
+
+class Mobile with ChangeNotifier{
   String title;
   String ram;
   int price;
-  bool isFavorite;
+  var isFavorite;
   bool isCamera;
   bool isWifi;
   String cameraSpecs;
@@ -24,4 +26,10 @@ class Mobile {
 
     
   });
+  void togglefavorite()
+  {
+    isFavorite=!isFavorite;
+    notifyListeners();
+  }
+ 
 }

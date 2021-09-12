@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../models/mobile.dart';
+import 'mobile.dart';
 
 class MobileDetail with ChangeNotifier {
   List _mobiles_list = [
@@ -12,7 +12,8 @@ class MobileDetail with ChangeNotifier {
       title: "Oppo Reno",
       imageURL: "https://www.whatmobile.com.pk/admin/images/Oppo/OppoReno6-b.jpg",
       cameraSpecs: "64 MP",
-      id: "M1"
+      id: "M1",
+     
     ),
     Mobile(
       batterylife: "1020 mAh ",
@@ -22,7 +23,8 @@ class MobileDetail with ChangeNotifier {
       ram: "128 MB",
       title: "Nokia 105",
       imageURL: "https://www.whatmobile.com.pk/admin/images/Nokia/Nokia1054G-b.jpg",
-      id: "M2"
+      id: "M2",
+      
       
     ),
     Mobile(
@@ -34,7 +36,8 @@ class MobileDetail with ChangeNotifier {
       title: "Infinix Hot 10",
       imageURL: "https://www.whatmobile.com.pk/admin/images/Infinix/InfinixHot10Play3GB-b.jpg",
       cameraSpecs: "13 MP",
-      id: "M3"
+      id: "M3",
+     
     ),
     Mobile(
       batterylife: "4400 mAh ",
@@ -45,11 +48,18 @@ class MobileDetail with ChangeNotifier {
       title: "Samsung G Fold",
       imageURL: "https://i.gadgets360cdn.com/products/large/samsung-galaxy-z-fold-3-646x800-1628693757.jpg",
       cameraSpecs: "12 MP",
-      id: "M4"
+      id: "M4",
+     
     ),
   ];
 
   List get mobiledetails{
     return [..._mobiles_list];
   }
+  List get onlyFavorite{
+    return mobiledetails.where((element) => element.isFavorite==true).toList();
+  }
+  
+
+ 
 }
