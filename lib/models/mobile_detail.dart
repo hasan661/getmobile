@@ -59,6 +59,31 @@ class MobileDetail with ChangeNotifier {
   List get onlyFavorite{
     return mobiledetails.where((element) => element.isFavorite==true).toList();
   }
+
+  void addmobile(Mobile mobile)
+  {
+    _mobiles_list.add(mobile);
+    notifyListeners();
+  }
+   Mobile filterbyid(id){
+    return _mobiles_list.firstWhere((element) => element.id==id);
+  }
+  void updatemobile(id, Mobile newproduct){
+    print(id+"Hasan");
+   final instance= _mobiles_list.indexWhere((element) => element.id==id);
+   print(instance);
+    _mobiles_list[instance]=newproduct;
+    notifyListeners();
+
+   
+  }
+
+  void deletemobile(id){
+    _mobiles_list.removeWhere((element) => element.id==id);
+    notifyListeners();
+  }
+
+ 
   
 
  
